@@ -1,0 +1,55 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions:
+  - axiom
+scope: source.facetaxiom
+contexts:
+  main:
+    - match: \b(Axiom|Define)(\W)+
+      scope: keyword.facetaxiom
+      push: name_required
+    - match: \b(InstructionSet)(\W)+
+      scope: keyword.facetaxiom
+      push: type_required
+    - match: \b(exists|forall)(\W)+
+      scope: keyword.facetaxiom
+      push: after_quantifier
+    - match: \b(ila\-write|ila\-read|ila\-name|with\-facet\-event)\b
+      scope: constant.language # builtin.facetaxiom
+    - match: (\/\\|\\\/|=>|~=|:=)
+      scope: operator.facetaxiom
+    # Numbers
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.facetaxiom
+    - match: '\#'
+      scope: comment.facetaxiom
+      push: line_comment
+    - match: '\%(\w|\-)+'
+      scope: markup.bold #macro.facetaxiom
+    - match: (\w+)\[(.+?)\]
+      captures:
+        1:function.facetaxiom #variable.function #markup.bold # variable.function
+
+  line_comment:
+    - meta_scope: comment.line.facetaxiom
+    - match: $
+      pop: true
+
+  name_required:
+    - match: (\w)+
+      scope: entity.name #variable.facetaxiom #identifier.facetaxiom
+      pop: true
+
+  type_required:
+    - match: (\w)+
+      scope: storage.type #variable.facetaxiom #identifier.facetaxiom
+      pop: true
+
+  after_quantifier:
+    - match: (\w+)(\W)*\:(\W)*(\w+)
+      captures:
+        1: entity.name
+        4: storage.type
+      # idpair.facetaxiom # constant.numeric.facetaxiom
+      pop: true

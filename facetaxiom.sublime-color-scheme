@@ -1,0 +1,33 @@
+{
+    "variables": {
+        // Define variables here
+    },
+    "globals": {
+        "foreground": "",
+        "background": "",
+        "accent": "",
+        "selection": "",
+    },
+    "rules": [
+        {
+            "scope": "builtin.facetaxiom",
+            "foreground": "",
+        },
+        {
+            "scope": "operator.facetaxiom",
+            "foreground": "",
+        },
+        {
+            "scope": "macro.facetaxiom",
+            "foreground": "#00FF00",
+        },
+        {
+            "scope": "identifier.facetaxiom",
+            "foreground": "",
+        },
+        {
+            "scope": "idpair.facetaxiom",
+            "foreground": "",
+        },
+    ]
+}
